@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_parser.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: migarci2 <migarci2@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/02 14:34:48 by migarci2          #+#    #+#             */
+/*   Updated: 2023/12/02 14:34:49 by migarci2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/map.h"
 #include "../../inc/helpers.h"
 
@@ -16,14 +28,14 @@ static int	*ft_get_map_size(int fd)
 	map_size[0] = ft_strlen_protected(line);
 	while (line)
 	{
-		map_size[1]++;
 		line_length = ft_strlen_protected(line);
-		if (line_length != map_size[0])
+		if (line_length != map_size[0] || line[0] == '\0')
 		{
 			free(line);
 			free(map_size);
 			return (NULL);
 		}
+		map_size[1]++;
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -126,7 +138,6 @@ t_map	*ft_get_map(char *path)
 	close(fd);
 	if (!map_size)
 		return (NULL);
-
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
@@ -136,5 +147,8 @@ t_map	*ft_get_map(char *path)
 	map = ft_fill_map(fd, map_size);
 	free(map_size);
 	close(fd);
-	return (ft_update_map_details(map));
+	map = ft_update_map_details(map);
+	if (!ft_validate_map(map))
+		return (NULL);
+	return (map);
 }

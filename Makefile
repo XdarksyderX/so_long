@@ -1,5 +1,5 @@
 NAME=so_long
-SRC=src/helpers/error.c src/helpers/util.c src/helpers/clean.c src/main.c src/map/get_next_line.c src/map/map_checker.c src/map/map_parser.c src/map/map_utils.c src/map/map_solvable.c src/rendering/init_mlx.c src/rendering/render.c src/controls/hooks.c src/controls/move.c
+SRC=src/helpers/error.c src/helpers/util.c src/helpers/clean.c src/main.c src/map/get_next_line.c src/map/map_checker.c src/map/map_parser.c src/map/map_utils.c src/rendering/init_mlx.c src/rendering/render.c src/controls/hooks.c src/controls/move.c
 
 OBJ_DIR = ./obj
 OBJ=$(SRC:%.c=$(OBJ_DIR)/%.o)
@@ -27,9 +27,8 @@ MLX_DIR = ./libs/mlx
 ifeq ($(UNAME), Linux)
     MLX_FLAGS = -L$(MLX_DIR) -l$(MLX_LIB) -L/usr/lib/X11 -lXext -lX11 -L$(LIBFT_DIR) -lft
 else
-    MLX_FLAGS = -L$(MLX_DIR) -l$(MLX_LIB) -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit -L$(LIBFT_DIR) -lft
+    MLX_FLAGS = -L$(MLX_DIR) -l$(MLX_LIB) -framework OpenGL -framework AppKit -L$(LIBFT_DIR) -lft -lz
 endif
-
 all: $(LIBFT_LIB) $(MLX_LIB) $(NAME)
 
 $(OBJ_DIR)/%.o: %.c

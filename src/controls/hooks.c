@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hooks.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: migarci2 <migarci2@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/02 14:33:26 by migarci2          #+#    #+#             */
+/*   Updated: 2023/12/02 14:33:27 by migarci2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/controls.h"
 
 int	ft_handle_close(t_data *data)
@@ -33,13 +45,13 @@ int	ft_handle_keypress(int keycode, t_data *data)
 	old_map = NULL;
 	if (keycode == 53 || keycode == 65307)
 		ft_handle_close(data);
-	else if (keycode == 119)
+	else if (keycode == 13 || keycode == 119)
 		old_map = ft_move_player(data, UP);
-	else if (keycode == 115)
+	else if (keycode == 1 || keycode == 115)
 		old_map = ft_move_player(data, DOWN);
-	else if (keycode == 97)
+	else if (keycode == 0 || keycode == 97)
 		old_map = ft_move_player(data, LEFT);
-	else if (keycode == 100)
+	else if (keycode == 2 || keycode == 100)
 		old_map = ft_move_player(data, RIGHT);
 	if (old_map)
 		ft_render_map(data, old_map);

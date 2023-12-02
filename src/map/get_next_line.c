@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: migarci2 <migarci2@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/02 14:34:08 by migarci2          #+#    #+#             */
+/*   Updated: 2023/12/02 14:37:53 by migarci2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/map.h"
 
 static int	read_char(int fd, char *buffer, int *i)
@@ -7,13 +19,11 @@ static int	read_char(int fd, char *buffer, int *i)
 	bytes_read = read(fd, &buffer[*i], 1);
 	if (bytes_read <= 0)
 		return (bytes_read);
-
 	if (buffer[*i] == '\n' || *i == BUFFER_SIZE)
 	{
 		buffer[*i] = '\0';
 		return (1);
 	}
-
 	(*i)++;
 	return (2);
 }
