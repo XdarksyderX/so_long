@@ -6,7 +6,7 @@
 /*   By: migarci2 <migarci2@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:34:14 by migarci2          #+#    #+#             */
-/*   Updated: 2023/12/02 15:23:59 by migarci2         ###   ########.fr       */
+/*   Updated: 2023/12/07 12:52:35 by migarci2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,28 +49,16 @@ static bool	ft_check_map_walls(t_map *map)
 	return (true);
 }
 
-bool ft_validate_map(t_map *map)
+bool	ft_validate_map(t_map *map)
 {
-    if (!ft_check_map_shape(map))
-    {
-        ft_putstr_fd("Error: El mapa no tiene la forma correcta.\n", STDERR_FILENO);
-        return (false);
-    }
-    if (!ft_check_map_walls(map))
-    {
-        ft_putstr_fd("Error: El mapa no está rodeado por muros en todos los lados.\n", STDERR_FILENO);
-        return (false);
-    }
-    if (!(ft_count_char_in_map(map, 'P') == 1 && ft_count_char_in_map(map, 'E') == 1))
-    {
-        ft_putstr_fd("Error: El mapa debe tener exactamente un jugador y una salida.\n", STDERR_FILENO);
-        return (false);
-    }
-    if (!(map->max_collectives > 0))
-    {
-        ft_putstr_fd("Error: Debe haber al menos un coleccionable en el mapa.\n", STDERR_FILENO);
-        return (false);
-    }
-    return (true);
+	if (!ft_check_map_shape(map))
+		return (false);
+	if (!ft_check_map_walls(map))
+		return (false);
+	if (!(ft_count_char_in_map(map, 'P')
+			== 1 && ft_count_char_in_map(map, 'E') == 1))
+		return (false);
+	if (!(map->max_collectives > 0))
+		return (false);
+	return (true);
 }
-

@@ -6,7 +6,7 @@
 /*   By: migarci2 <migarci2@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:34:48 by migarci2          #+#    #+#             */
-/*   Updated: 2023/12/02 15:19:01 by migarci2         ###   ########.fr       */
+/*   Updated: 2023/12/02 15:41:06 by migarci2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,6 @@ t_map	*ft_get_map(char *path)
 		return (NULL);
 	}
 	map = ft_fill_map(fd, map_size);
-	ft_print_map(map);
 	free(map_size);
 	close(fd);
 	map = ft_update_map_details(map);
